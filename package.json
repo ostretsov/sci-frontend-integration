@@ -1,0 +1,32 @@
+{
+  "name": "sci",
+  "repository": {
+    "type": "git",
+    "url": "git://bitbucket.org/sci_product/lomonosov.git"
+  },
+  "scripts": {
+    "build": "webpack -p"
+  },
+  "license": "proprietary",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "cropper": "~2.3.4",
+    "jquery": "^1.9.1",
+    "mathjax": "~2.7.0",
+    "quill": "^1.2.6",
+    "sci-layout3": "git@bitbucket.org:sci_prod_user_css/layout3.git#ac2545543eed3bc161acfd85f9ae03b341835223",
+    "sci-form-constructor": "git@bitbucket.org:sci_prod_front/formconstructor_v2.git#4a30192895fecec95dc3b7a843dfebf681b2fb80",
+    "sci-interests": "git@bitbucket.org:sci_prod_front/interests.git#7806eb9a284d2e2a7a848f068582a9e3e297c9e9",
+    "sci-sections": "git@bitbucket.org:sci_prod_front/event_sections.git#6c7177c3afba8a3e61de55f49f357a2f2ca6a487",
+    "sci-frontend": "git@bitbucket.org:sci_prod_front/sci-frontend.git#6ddfe3586e9e4b4bc7d35b4099ad7cf1d8791cc3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.8.1"
+  }
+}
