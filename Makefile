@@ -91,6 +91,19 @@ copy-js:
 	cp node_modules/sci-layout3/prod/js/lib/menus.js web/js/layout3-menus.js
 	cp node_modules/sci-layout3/prod/js/check-table.js web/js/layout3-check-table.js
 	cp node_modules/sci-layout3/prod/js/options-tree.js web/js/layout3-options-tree.js
+	cp node_modules/sci-layout3/prod/js/testing-page.btn-appear.js web/js/layout3-testing-page-btn-appear.js
+	cp node_modules/sci-layout3/prod/js/ep-builder.add-event.js web/js/layout3-ep-builder.add-event.js
+	cp node_modules/sci-layout3/prod/js/ep-builder.important.js web/js/layout3-ep-builder.important.js
+	cp node_modules/sci-layout3/prod/js/ep-builder.speaker.js web/js/layout3-ep-builder.speaker.js
+	cp node_modules/sci-layout3/prod/js/inner-modals.js web/js/layout3-inner-modals.js
+	cp node_modules/sci-layout3/prod/js/masonry.event-pins.js web/js/layout3-masonry.event-pins.js
+	cp node_modules/sci-layout3/prod/js/panel-toggle.js web/js/layout3-panel-toggle.js
+	cp node_modules/sci-layout3/prod/js/filter-toggle.js web/js/layout3-filter-toggle.js
+	cp node_modules/sci-layout3/prod/js/options-tree.open.js web/js/layout3-options-tree.open.js
+	cp node_modules/sci-layout3/prod/js/carousel.universiade.js web/js/layout3-carousel.universiade.js
+	cp node_modules/sci-layout3/prod/js/carousel.img-aligner.js web/js/layout3-carousel.img-aligner.js
+	cp node_modules/sci-layout3/prod/js/carousel.index.js web/js/layout3-carousel.index.js
+	cp node_modules/sci-layout3/prod/js/index-scrollTo.js web/js/layout3-index-scrollTo.js
 
 	cp node_modules/sci-interests/build/js/interest.js web/js/sci-interest.js
 	cp node_modules/sci-interests/build/js/templates.js web/js/sci-interest-templates.js
@@ -100,3 +113,15 @@ copy-js:
 	cp bower/bower_components/sci-organization/build/js/templates.js web/js/sci-organization-templates.js
 	cp bower/bower_components/sci-user/build/js/user.js web/js/sci-user.js
 	cp bower/bower_components/sci-user/build/js/templates.js web/js/sci-user-templates.js
+
+	cp bower/bower_components/plupload/js/plupload.full.min.js web/js/plupload.js
+	cp bower/bower_components/tinymce/tinymce.min.js web/js/tinymce.min.js
+	cp bower/bower_components/jquery-waypoints/waypoints.js web/js/waypoints.js
+	cp bower/bower_components/ace-builds/src-noconflict/ace.js web/js/ace.js
+	cp bower/bower_components/masonry/dist/masonry.pkgd.js web/js/masonry.js
+	cp bower/bower_components/imgLiquid/js/imgLiquid.js web/js/img-liquid.js
+	cp node_modules/quill/quill.js web/js/quill.js
+	cp node_modules/mathjax/MathJax.js web/js/mathjax.js
+	cp node_modules/mathjax/config/TeX-AMS-MML_HTMLorMML.js web/js/mathjax-config-TeX-AMS-MML_HTMLorMML.js
+	cp node_modules/sci-layout3/source/js/global/owl.carousel.js web/js/owl.carousel.js
+	cp node_modules/cropper/dist/cropper.js web/js/cropper.js
