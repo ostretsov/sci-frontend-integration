@@ -8,6 +8,7 @@ build:
 	make install-bower-deps
 
 	make build-layout
+	make build-sections
 
 	make copy-js
 
@@ -54,15 +55,21 @@ install-and-build-npm-deps:
 
 .PHONY: install-bower-deps
 install-bower-deps:
-	make npm EXEC=bower SRC="`pwd`/bower" CMD=install
+	make SRC="`pwd`/bower" npm EXEC=bower CMD=install
 
 .PHONY: build-layout
 build-layout:
 	make npm SRC="`pwd`/node_modules/sci-layout3" CMD=install
-	make npm-compile EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/optipng-bin/lib/install.js"
-	make npm-compile EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/gifsicle/lib/install.js"
-	make npm-compile EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/pngquant-bin/lib/install.js"
-	make npm-compile EXEC=gulp SRC="`pwd`/node_modules/sci-layout3" CMD=prod
+	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=node CMD="node_modules/optipng-bin/lib/install.js"
+	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=node CMD="node_modules/gifsicle/lib/install.js"
+	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=node CMD="node_modules/pngquant-bin/lib/install.js"
+	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=gulp CMD=prod
+
+.PHONY: build-sections
+build-sections:
+	make npm SRC="`pwd`/node_modules/sci-sections" CMD=install
+	make npm-compile SRC="`pwd`/node_modules/sci-sections" EXEC=gulp CMD=prod
+	make SRC="`pwd`/node_modules/sci-sections" npm EXEC=bower CMD=install
 
 .PHONY: copy-js
 copy-js:
@@ -89,6 +96,7 @@ copy-js:
 	cp node_modules/sci-layout3/prod/js/lib/initneedfulthings.js web/js/layout3-initneedfulthings.js
 	cp node_modules/sci-layout3/prod/js/lib/blockheader.js web/js/layout3-blockheader.js
 	cp node_modules/sci-layout3/prod/js/lib/menus.js web/js/layout3-menus.js
+	cp node_modules/sci-layout3/prod/js/lib/anchor-scroll.js web/js/layout3-anchor-scroll.js
 	cp node_modules/sci-layout3/prod/js/check-table.js web/js/layout3-check-table.js
 	cp node_modules/sci-layout3/prod/js/options-tree.js web/js/layout3-options-tree.js
 	cp node_modules/sci-layout3/prod/js/testing-page.btn-appear.js web/js/layout3-testing-page-btn-appear.js
@@ -104,6 +112,9 @@ copy-js:
 	cp node_modules/sci-layout3/prod/js/carousel.img-aligner.js web/js/layout3-carousel.img-aligner.js
 	cp node_modules/sci-layout3/prod/js/carousel.index.js web/js/layout3-carousel.index.js
 	cp node_modules/sci-layout3/prod/js/index-scrollTo.js web/js/layout3-index-scrollTo.js
+	cp node_modules/sci-layout3/prod/js/scroll.chat.js web/js/layout3-scroll.chat.js
+	cp node_modules/sci-layout3/prod/js/carousel.promo.js web/js/layout3-carousel.promo.js
+	cp node_modules/sci-layout3/prod/js/my-wow.js web/js/layout3-my-wow.js
 
 	cp node_modules/sci-interests/build/js/interest.js web/js/sci-interest.js
 	cp node_modules/sci-interests/build/js/templates.js web/js/sci-interest-templates.js
@@ -120,6 +131,8 @@ copy-js:
 	cp bower/bower_components/ace-builds/src-noconflict/ace.js web/js/ace.js
 	cp bower/bower_components/masonry/dist/masonry.pkgd.js web/js/masonry.js
 	cp bower/bower_components/imgLiquid/js/imgLiquid.js web/js/img-liquid.js
+	cp bower/bower_components/jquery.scrollbar/jquery.scrollbar.js web/js/jquery-scrollbar.js
+	cp bower/bower_components/wow/dist/wow.js web/js
 	cp node_modules/quill/quill.js web/js/quill.js
 	cp node_modules/mathjax/MathJax.js web/js/mathjax.js
 	cp node_modules/mathjax/config/TeX-AMS-MML_HTMLorMML.js web/js/mathjax-config-TeX-AMS-MML_HTMLorMML.js
