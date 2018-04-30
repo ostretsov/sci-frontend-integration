@@ -4,7 +4,7 @@ build:
 
 	make clean
 
-	make install-npm-deps
+	make install-and-build-npm-deps
 	make install-bower-deps
 
 	make build-layout
@@ -33,7 +33,7 @@ clean:
 	rm -rf web/js node_modules bower/bower_components *.log
 
 .PHONY: install-npm-deps
-install-npm-deps:
+install-and-build-npm-deps:
 	make npm CMD=install
 	make npm CMD="run build"
 
@@ -76,3 +76,12 @@ copy-js:
 	cp node_modules/sci-layout3/prod/js/lib/menus.js web/js/layout3-menus.js
 	cp node_modules/sci-layout3/prod/js/check-table.js web/js/layout3-check-table.js
 	cp node_modules/sci-layout3/prod/js/options-tree.js web/js/layout3-options-tree.js
+
+	cp node_modules/sci-interests/build/js/interest.js web/js/sci-interest.js
+	cp node_modules/sci-interests/build/js/templates.js web/js/sci-interest-templates.js
+	cp bower/bower_components/sci-location/build/js/location.js web/js/sci-location.js
+	cp bower/bower_components/sci-location/build/js/templates.js web/js/sci-location-templates.js
+	cp bower/bower_components/sci-organization/build/js/organization.js web/js/sci-organization.js
+	cp bower/bower_components/sci-organization/build/js/templates.js web/js/sci-organization-templates.js
+	cp bower/bower_components/sci-user/build/js/user.js web/js/sci-user.js
+	cp bower/bower_components/sci-user/build/js/templates.js web/js/sci-user-templates.js

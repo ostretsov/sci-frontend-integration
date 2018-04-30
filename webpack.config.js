@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: './node_modules/sci-frontend/src/assets/js/integration.js',
     output: {
-        filename: 'web/js/integration.js',
+        filename: 'web/js/react-integration.js',
     },
     module: {
         loaders: [
