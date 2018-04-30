@@ -1,6 +1,6 @@
 .PHONY: build
 build:
-	make docker-image
+	make npm-compile-docker-image
 
 	make clean
 
@@ -12,9 +12,13 @@ build:
 	make copy-js
 
 DOCKER_IMAGE := $(shell echo `pwd`| sed 's/[^a-zA-Z]/_/g' | sed 's/^.//')
-.PHONY: docker-image
-docker-image:
+.PHONY: npm-compile-docker-image
+npm-compile-docker-image:
 	docker build -t $(DOCKER_IMAGE) .
+
+#
+#   Two versions are used because debian one asks for pass phrase while authorizing.
+#
 
 SRC := $(shell pwd)
 EXEC := npm
@@ -26,15 +30,26 @@ npm:
         -v $(SRC):/src:rw -v ~/.ssh:/home/dev/.ssh \
         -e "PUID=$(shell id -u)" \
         -e "PGID=$(shell id -g)" \
+        mkenney/npm:latest $(EXEC) $(CMD)
+
+.PHONY: npm-compile
+npm-compile:
+	docker run \
+        --rm \
+        -it \
+        -v $(SRC):/src:rw -v ~/.ssh:/home/dev/.ssh \
+        -e "PUID=$(shell id -u)" \
+        -e "PGID=$(shell id -g)" \
         $(DOCKER_IMAGE) $(EXEC) $(CMD)
 
 .PHONY: clean
 clean:
-	rm -rf web/js node_modules bower/bower_components *.log
+	rm -rf web/js node_modules bower/bower_components *.log tmp/*
 
 .PHONY: install-npm-deps
 install-and-build-npm-deps:
 	make npm CMD=install
+	cp node_modules/sci-frontend/src/assets/js/integration.js tmp/integration.js
 	make npm CMD="run build"
 
 .PHONY: install-bower-deps
@@ -44,10 +59,10 @@ install-bower-deps:
 .PHONY: build-layout
 build-layout:
 	make npm SRC="`pwd`/node_modules/sci-layout3" CMD=install
-	make npm EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/optipng-bin/lib/install.js"
-	make npm EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/gifsicle/lib/install.js"
-	make npm EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/pngquant-bin/lib/install.js"
-	make npm EXEC=gulp SRC="`pwd`/node_modules/sci-layout3" CMD=prod
+	make npm-compile EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/optipng-bin/lib/install.js"
+	make npm-compile EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/gifsicle/lib/install.js"
+	make npm-compile EXEC=node SRC="`pwd`/node_modules/sci-layout3" CMD="node_modules/pngquant-bin/lib/install.js"
+	make npm-compile EXEC=gulp SRC="`pwd`/node_modules/sci-layout3" CMD=prod
 
 .PHONY: copy-js
 copy-js:
