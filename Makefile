@@ -11,6 +11,9 @@ build:
 	make build-sections
 
 	make copy-js
+	make copy-layout
+
+	tar -zcvf web.tar --exclude='.gitignore' web
 
 DOCKER_IMAGE := $(shell echo `pwd`| sed 's/[^a-zA-Z]/_/g' | sed 's/^.//')
 .PHONY: npm-compile-docker-image
@@ -155,3 +158,16 @@ copy-js:
 	cp node_modules/mathjax/config/TeX-AMS-MML_HTMLorMML.js web/js/mathjax-config-TeX-AMS-MML_HTMLorMML.js
 	cp node_modules/sci-layout3/source/js/global/owl.carousel.js web/js/owl.carousel.js
 	cp node_modules/cropper/dist/cropper.js web/js/cropper.js
+
+.PHONY: copy-layout
+copy-layout:
+	rm -rf web/layout
+	mkdir -p web/layout
+
+	mkdir -p web/layout/quill && cp node_modules/quill/dist/quill.snow.css web/layout/quill
+
+	cp -r node_modules/sci-layout3/prod/css web/layout/layout3
+	cp -r node_modules/sci-layout3/prod/fonts web/layout/layout3
+	cp -r node_modules/sci-layout3/prod/img web/layout/layout3
+
+	mkdir web/layout/cropper && cp -r node_modules/cropper/dist/cropper.css web/layout/cropper
