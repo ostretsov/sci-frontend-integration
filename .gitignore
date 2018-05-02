@@ -4,3 +4,4 @@ node_modules
 bower/bower_components
 *.log
 tmp/*
+web.tar.gz

@@ -59,7 +59,7 @@ npm6.9:
 
 .PHONY: clean
 clean:
-	rm -rf web/js node_modules bower/bower_components *.log tmp/*
+	rm -rf web/js node_modules bower/bower_components *.log tmp/* web.tar.gz
 
 .PHONY: install-npm-deps
 install-and-build-npm-deps:
@@ -166,7 +166,7 @@ copy-layout:
 
 	mkdir -p web/layout/quill && cp node_modules/quill/dist/quill.snow.css web/layout/quill
 
-	cp -r node_modules/sci-layout3/prod/css web/layout/layout3
+	mkdir web/layout/layout3 && cp -r node_modules/sci-layout3/prod/css web/layout/layout3
 	cp -r node_modules/sci-layout3/prod/fonts web/layout/layout3
 	cp -r node_modules/sci-layout3/prod/img web/layout/layout3
 
