@@ -13,7 +13,7 @@ build:
 	make copy-js
 	make copy-layout
 
-	tar -zcvf web.tar --exclude='.gitignore' web
+	tar -zcvf web.tar.gz --exclude='.gitignore' web
 
 DOCKER_IMAGE := $(shell echo `pwd`| sed 's/[^a-zA-Z]/_/g' | sed 's/^.//')
 .PHONY: npm-compile-docker-image
