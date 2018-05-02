@@ -43,6 +43,17 @@ npm-compile:
         -e "PGID=$(shell id -g)" \
         $(DOCKER_IMAGE) $(EXEC) $(CMD)
 
+# Used for building sections
+.PHONY: npm6.9
+npm6.9:
+	docker run \
+        --rm \
+        -it \
+        -v $(SRC):/src:rw -v ~/.ssh:/home/dev/.ssh \
+        -e "PUID=$(shell id -u)" \
+        -e "PGID=$(shell id -g)" \
+        mkenney/npm:node-6.9-alpine $(EXEC) $(CMD)
+
 .PHONY: clean
 clean:
 	rm -rf web/js node_modules bower/bower_components *.log tmp/*
@@ -68,8 +79,8 @@ build-layout:
 .PHONY: build-sections
 build-sections:
 	make npm SRC="`pwd`/node_modules/sci-sections" CMD=install
-	make npm-compile SRC="`pwd`/node_modules/sci-sections" EXEC=gulp CMD=prod
-	make SRC="`pwd`/node_modules/sci-sections" npm EXEC=bower CMD=install
+	make npm6.9 SRC="`pwd`/node_modules/sci-sections" EXEC=gulp CMD=build
+	make npm SRC="`pwd`/node_modules/sci-sections" EXEC=bower CMD=install
 
 .PHONY: copy-js
 copy-js:
@@ -86,6 +97,7 @@ copy-js:
 	cp bower/bower_components/jquery-ui/jquery-ui.js web/js
 	cp bower/bower_components/lodash/lodash.js web/js
 	cp bower/bower_components/moment/min/moment-with-locales.js web/js
+	cp bower/bower_components/moment/locale/ru.js web/js/moment-locale-ru.js
 
 	cp node_modules/sci-layout3/prod/js/lib/delete-confirm.js web/js/layout3-delete-confirm.js
 	cp node_modules/sci-layout3/prod/js/lib/delete-file.js web/js/layout3-delete-file.js
@@ -118,6 +130,11 @@ copy-js:
 
 	cp node_modules/sci-interests/build/js/interest.js web/js/sci-interest.js
 	cp node_modules/sci-interests/build/js/templates.js web/js/sci-interest-templates.js
+	cp node_modules/sci-sections/build/js/eventSections.js web/js/sci-sections.js
+	cp node_modules/sci-sections/build/js/templates.js web/js/sci-sections-templates.js
+	cp node_modules/sci-sections/bower_components/angular-resource/angular-resource.js web/js/sci-sections-angular-resource.js
+	cp node_modules/sci-form-constructor/build/js/constructor.js web/js/sci-constructor.js
+	cp node_modules/sci-form-constructor/build/js/templates.js web/js/sci-constructor-templates.js
 	cp bower/bower_components/sci-location/build/js/location.js web/js/sci-location.js
 	cp bower/bower_components/sci-location/build/js/templates.js web/js/sci-location-templates.js
 	cp bower/bower_components/sci-organization/build/js/organization.js web/js/sci-organization.js
