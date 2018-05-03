@@ -59,7 +59,7 @@ npm6.9:
 
 .PHONY: clean
 clean:
-	rm -rf web/js node_modules bower/bower_components *.log tmp/* web.tar.gz
+	rm -rf web/js web/layout node_modules bower/bower_components *.log tmp/* web.tar.gz
 
 .PHONY: install-npm-deps
 install-and-build-npm-deps:
@@ -87,9 +87,6 @@ build-sections:
 
 .PHONY: copy-js
 copy-js:
-	rm -rf web/js
-	mkdir -p web/js
-
 	cp bower/bower_components/angular/angular.js web/js
 	cp bower/bower_components/bootstrap/dist/js/bootstrap.js web/js
 	cp bower/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js web/js/bootstrap-datetimepicker.js
@@ -146,7 +143,9 @@ copy-js:
 	cp bower/bower_components/sci-user/build/js/templates.js web/js/sci-user-templates.js
 
 	cp bower/bower_components/plupload/js/plupload.full.min.js web/js/plupload.js
-	cp bower/bower_components/tinymce/tinymce.min.js web/js/tinymce.min.js
+	mkdir -p web/js/plupload
+	cp bower/bower_components/plupload/js/Moxie.swf web/js/plupload
+	cp bower/bower_components/plupload/js/Moxie.xap web/js/plupload
 	cp bower/bower_components/jquery-waypoints/waypoints.js web/js/waypoints.js
 	cp bower/bower_components/ace-builds/src-noconflict/ace.js web/js/ace.js
 	cp bower/bower_components/masonry/dist/masonry.pkgd.js web/js/masonry.js
@@ -158,6 +157,12 @@ copy-js:
 	cp node_modules/mathjax/config/TeX-AMS-MML_HTMLorMML.js web/js/mathjax-config-TeX-AMS-MML_HTMLorMML.js
 	cp node_modules/sci-layout3/source/js/global/owl.carousel.js web/js/owl.carousel.js
 	cp node_modules/cropper/dist/cropper.js web/js/cropper.js
+
+	mkdir -p web/js/tinymce
+	cp bower/bower_components/tinymce/tinymce.min.js web/js/tinymce
+	cp -r bower/bower_components/tinymce/plugins web/js/tinymce
+	cp -r bower/bower_components/tinymce/themes web/js/tinymce
+	cp -r bower/bower_components/tinymce/skins web/js/tinymce
 
 .PHONY: copy-layout
 copy-layout:
