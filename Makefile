@@ -73,7 +73,7 @@ install-bower-deps:
 
 .PHONY: build-layout
 build-layout:
-	make npm SRC="`pwd`/node_modules/sci-layout3" CMD=install
+	make npm-compile SRC="`pwd`/node_modules/sci-layout3" CMD=install
 	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=node CMD="node_modules/optipng-bin/lib/install.js"
 	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=node CMD="node_modules/gifsicle/lib/install.js"
 	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=node CMD="node_modules/pngquant-bin/lib/install.js"
