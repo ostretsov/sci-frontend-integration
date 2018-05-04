@@ -18,7 +18,7 @@
     "sci-form-constructor": "git@bitbucket.org:sci_prod_front/formconstructor_v2.git#4a30192895fecec95dc3b7a843dfebf681b2fb80",
     "sci-interests": "git@bitbucket.org:sci_prod_front/interests.git#7806eb9a284d2e2a7a848f068582a9e3e297c9e9",
     "sci-sections": "git@bitbucket.org:sci_prod_front/event_sections.git#6c7177c3afba8a3e61de55f49f357a2f2ca6a487",
-    "sci-frontend": "git@bitbucket.org:sci_prod_front/sci-frontend.git#886cd81414791ef226e48645f9d972c3ae491ef7"
+    "sci-frontend": "git@bitbucket.org:sci_prod_front/sci-frontend.git#face1a28ac934566cad132528927ec27452abdca"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
