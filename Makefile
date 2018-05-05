@@ -15,7 +15,7 @@ build:
 
 	tar -zcvf web.tar.gz --exclude='.gitignore' web
 
-DOCKER_IMAGE := $(shell echo `pwd`| sed 's/[^a-zA-Z]/_/g' | sed 's/^.//')
+DOCKER_IMAGE := $(shell echo `pwd`| sed 's/[^a-zA-Z]/_/g' | sed 's/^.//' | tr '[:upper:]' '[:lower:]')
 .PHONY: npm-compile-docker-image
 npm-compile-docker-image:
 	docker build -t $(DOCKER_IMAGE) .
