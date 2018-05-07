@@ -8,6 +8,7 @@ build:
 	make install-bower-deps
 
 	make build-layout
+	make build-frontend
 	make build-sections
 
 	make copy-js
@@ -15,7 +16,7 @@ build:
 
 	tar -zcvf web.tar.gz --exclude='.gitignore' web
 
-DOCKER_IMAGE := $(shell echo `pwd`| sed 's/[^a-zA-Z]/_/g' | sed 's/^.//')
+DOCKER_IMAGE := $(shell echo `pwd`| sed 's/[^a-zA-Z]/_/g' | sed 's/^.//' | tr '[:upper:]' '[:lower:]')
 .PHONY: npm-compile-docker-image
 npm-compile-docker-image:
 	docker build -t $(DOCKER_IMAGE) .
@@ -78,6 +79,11 @@ build-layout:
 	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=node CMD="node_modules/gifsicle/lib/install.js"
 	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=node CMD="node_modules/pngquant-bin/lib/install.js"
 	make npm-compile SRC="`pwd`/node_modules/sci-layout3" EXEC=gulp CMD=prod
+
+.PHONY: build-frontend
+build-frontend:
+	make npm SRC="`pwd`/node_modules/sci-frontend" CMD=install
+	make npm CMD="run build"
 
 .PHONY: build-sections
 build-sections:
