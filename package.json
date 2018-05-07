@@ -5,7 +5,7 @@
     "url": "git://bitbucket.org/sci_product/lomonosov.git"
   },
   "scripts": {
-    "build": "webpack -p"
+    "build": "webpack"
   },
   "license": "proprietary",
   "dependencies": {
