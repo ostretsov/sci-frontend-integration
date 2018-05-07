@@ -4,12 +4,14 @@ build:
 
 	make clean
 
-	make install-and-build-npm-deps
+	make install
 	make install-bower-deps
 
 	make build-layout
 	make build-frontend
 	make build-sections
+
+	make build
 
 	make copy-js
 	make copy-layout
@@ -62,9 +64,12 @@ npm6.9:
 clean:
 	rm -rf web/js web/layout node_modules bower/bower_components *.log tmp/* web.tar.gz
 
-.PHONY: install-npm-deps
-install-and-build-npm-deps:
+.PHONY: install
+install:
 	make npm CMD=install
+
+.PHONY: build
+build:
 	cp node_modules/sci-frontend/src/assets/js/integration.js tmp/integration.js
 	make npm CMD="run build"
 
@@ -83,7 +88,7 @@ build-layout:
 .PHONY: build-frontend
 build-frontend:
 	make npm SRC="`pwd`/node_modules/sci-frontend" CMD=install
-	make npm CMD="run build"
+	make npm SRC="`pwd`/node_modules/sci-frontend" CMD="run build"
 
 .PHONY: build-sections
 build-sections:
