@@ -11,7 +11,7 @@ build:
 	make build-frontend
 	make build-sections
 
-	make build
+	make build-all
 
 	make copy-js
 	make copy-layout
@@ -68,8 +68,8 @@ clean:
 install:
 	make npm CMD=install
 
-.PHONY: build
-build:
+.PHONY: build-all
+build-all:
 	cp node_modules/sci-frontend/src/assets/js/integration.js tmp/integration.js
 	make npm CMD="run build"
 
