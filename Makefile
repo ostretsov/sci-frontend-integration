@@ -163,7 +163,7 @@ copy-js:
 	cp bower/bower_components/imgLiquid/js/imgLiquid.js web/js/img-liquid.js
 	cp bower/bower_components/jquery.scrollbar/jquery.scrollbar.js web/js/jquery-scrollbar.js
 	cp bower/bower_components/wow/dist/wow.js web/js
-	cp node_modules/quill/quill.js web/js/quill.js
+	cp node_modules/quill/dist/quill.js web/js/quill.js
 	cp node_modules/mathjax/MathJax.js web/js/mathjax.js
 	cp node_modules/mathjax/config/TeX-AMS-MML_HTMLorMML.js web/js/mathjax-config-TeX-AMS-MML_HTMLorMML.js
 	cp node_modules/sci-layout3/source/js/global/owl.carousel.js web/js/owl.carousel.js
